@@ -65,7 +65,18 @@ Route::middleware(['auth', 'isAdmin'])->group(function(){
 
     Route::get('admin/products', [AdminController::class, 'products'])->name('products');
 
+    //route for delelting products
     route::get('/deleteProduct/{id}', [AdminController::class, 'deleteProduct'])->name('deleteProduct');
+
+
+    // route for editing products
+    route::get('/editProduct/{id}', [AdminController::class, 'editProduct'])->name('editProduct');
+
+
+    // route to update products
+    route::post('/updateProduct/{id}', [AdminController::class, 'updateProduct'])->name('updateProduct');
+
+
 });
 
 

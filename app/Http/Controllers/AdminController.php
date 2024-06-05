@@ -99,9 +99,58 @@ class AdminController extends Controller
         return view('admin/products');
     }
 
+
+    // function to editing product
+    public function editProduct($productId){
+        $product = Product::findorFail($productId);
+        return view('admin.editProduct', compact('product'));
+    }
+
+
+    // functiont to delete product
     public function deleteProduct($id) {
         $data = Product::find($id);
         $data->delete();
         return redirect()->back()->with('succes', 'product deleted successfully');
+    }
+
+
+    // function to update products
+    public function updateProduct(Request $request, $id) {
+        $request->validate([
+            'productName'=> 'required|max:225',
+            'productCategory' => 'required|max:225',
+            'productImage' => ['nullable', 'file', 'max:10000'],
+            'productDescription' => 'required',
+            'manufacturerName' => 'required|max:225',
+            'status' => 'required',
+            'productPrice' => 'required',
+            'quantity' => 'nullable|max:225',
+            'warranty' => 'nullable|max:225',
+            'discountPrice' => 'nullable',
+            
+        ]);
+        
+        $product = Product::find($id);
+        $product->productName = $request->productName;
+        $product->productCategory = $request->productCategory;
+        $product->productDescription = $request->productDescription;
+        $product->manufacturerName = $request->manufacturerName;
+        $product->productPrice = $request->productPrice;
+        $product->discountPrice = $request->discountPrice;
+        $product->quantity = $request->quantity;
+        $product->status = $request->status;
+        $product->featuredProduct = $request->featuredProduct;
+
+        if ($request-> hasFile('productImage')) {
+            $image = $request->file('productImage');
+            $productImage = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('productFolder'), $productImage);
+            $product->productImage = $productImage;
+        }
+
+        $product->save();
+        return redirect()->route('products')->with('message', 'product added successfully');
+
     }
 }
