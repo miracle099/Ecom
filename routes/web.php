@@ -77,6 +77,12 @@ Route::middleware(['auth', 'isAdmin'])->group(function(){
     route::post('/updateProduct/{id}', [AdminController::class, 'updateProduct'])->name('updateProduct');
 
 
+    // user list route
+    route::get('admin/userList', [AdminController::class, 'userList'])->name('userList');
+
+
+     //route for delelting users
+     route::get('/deleteUser/{id}', [AdminController::class, 'deleteUser'])->name('deleteUser');
 });
 
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -152,5 +153,19 @@ class AdminController extends Controller
         $product->save();
         return redirect()->route('products')->with('message', 'product added successfully');
 
+    }
+
+
+    public function userList(){
+        $users = User::where('role_as', '0')->paginate(10);
+        return view('admin.user_list', compact('users'));
+    }
+
+
+      // functiont to delete user
+      public function deleteUser($id) {
+        $data = User::find($id);
+        $data->delete();
+        return redirect()->back()->with('succes', 'product deleted successfully');
     }
 }
