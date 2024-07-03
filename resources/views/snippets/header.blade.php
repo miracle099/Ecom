@@ -55,9 +55,7 @@
                                 <div class="dropdown-menu">
                                     <ul>
                                         @foreach($categoryLinks as $catlinks)
-                                        <li><a class="dropdown-item nav-link nav_item" href="">{{ $catlinks->category }}</a></li>
-                                        <!-- <li><a class="dropdown-item nav-link nav_item" href="">Men's Wear</a></li>
-                                        <li><a class="dropdown-item nav-link nav_item" href="">Shoes</a></li> -->
+                                        <li><a class="dropdown-item nav-link nav_item" href="{{ route('productCategory', $catlinks->id) }}">{{ $catlinks->category }}</a></li>
                                         @endforeach
                                     </ul>
                                 </div>
@@ -68,8 +66,14 @@
                             <li><a class="nav-link nav_item" href="/contact">Contact Us</a></li>
 
                             <li><a class="nav-link nav_item" href="">Blog</a></li>
+
+                            <li><a class="nav-link nav_item" href="{{ route('account') }}">Account</a></li>
                         </ul>
                     </div>
+                   
+
+                    <!-- IF AM AUTHENTICATED THEN SHOW ME LOGOUT AND SUBMIT BELOW FORM -->
+                    @auth
                     <ul class="navbar-nav attr-nav align-items-center">
                         <li><a href="javascript:;" class="nav-link search_trigger"><i class="linearicons-magnifier"></i></a>
                             <div class="search_wrap">
@@ -81,13 +85,10 @@
                             </div>
                             <div class="search_overlay"></div>
                         </li>
-                        <li class=""><a class="nav-link " href="#"><i class="linearicons-cart"></i><span class="cart_count">2</span></a>
+                        <li class=""><a class="nav-link " href="{{ route('carts') }}"><i class="linearicons-cart"></i><span class="cart_count">{{ $cartCount }}</span></a>
 
                         </li>
                     </ul>
-
-                    <!-- IF AM AUTHENTICATED THEN SHOW ME LOGOUT AND SUBMIT BELOW FORM -->
-                    @auth
                     <a class="btn btn-fill-out rounded-0 staggered-animation text-uppercase animated slideInLeft" href="{{ route('user_logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" data-animation="slideInLeft" data-animation-delay="1.5s" style="animation-delay: 1.5s; opacity: 1;">Logout</a>
 
 

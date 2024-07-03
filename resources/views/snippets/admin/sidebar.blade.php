@@ -62,10 +62,13 @@
                             <div class="collapse menu-dropdown" id="sidebarOrders">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a href="orders-list-view.html" class="nav-link" data-key="t-list-view">List View</a>
+                                        <a href="{{ route('pendingOrders') }}" class="nav-link" data-key="t-list-view">Pending Orders</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="orders-overview.html" class="nav-link" data-key="t-overview">Overview</a>
+                                        <a href="{{ route('orderAproved') }}" class="nav-link" data-key="t-overview">Approved Orders</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('cancledOrders') }}" class="nav-link" data-key="t-overview">Cancled Orders</a>
                                     </li>
                                 </ul>
                             </div>

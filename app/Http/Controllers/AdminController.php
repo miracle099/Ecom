@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -14,7 +15,9 @@ class AdminController extends Controller
 
     public function admin_dashboard()
     {
-        return view('admin.index');
+        // $userCount = User::where('role_as,')count();
+        $productCount = Product::count();
+        return view('admin.index', compact('productCount'));
     }
 
 
@@ -167,5 +170,61 @@ class AdminController extends Controller
         $data = User::find($id);
         $data->delete();
         return redirect()->back()->with('succes', 'product deleted successfully');
+    }
+
+
+    public function pendingOrders() {
+        $pendingOrders = Order::where('deliveryStatus', 'processing')->get();
+        return view('admin.pendingOrders', compact('pendingOrders'));
+    }
+
+    public function approvedOrder($id){
+        // find or order by id
+        $order = Order::findorFail($id);
+
+        // set delievry status on approved
+        $order->deliveryStatus = 'approves';
+
+        // get order by quantity
+        $productQuantity = $order->productQuantity;
+
+        // get the product id from order
+        $productId = $order->productId;
+
+        // find the product by id
+        $product = Product::find($productId);
+
+        // subtrate the ordered quantity from quantity
+        $product->quantity -= $productQuantity;
+
+        // save the updated quantity
+        $product->save();
+
+        // save the updated order
+        $order->save();
+
+        return redirect()->back()->with('message', 'order has been approved and quantity updated');
+
+
+    }
+
+    public function disapprovedOrder($id){
+        $order = Order::findorFail($id);
+        $order->deliveryStatus = 'Canceled';
+        $order->save();
+        return redirect()->back()->with('message', 'order has been disaproved succesfully');
+
+    }
+
+
+    public function orderAproved() {
+        $orderAproved = Order::where('deliveryStatus', 'approves')->get();
+        return view('admin.orderAproved', compact('orderAproved'));
+    }
+
+
+    public function cancledOrders() {
+        $cancledOrders = Order::where('deliveryStatus', 'Canceled')->get();
+        return view('admin.cancledOrders', compact('cancledOrders'));
     }
 }

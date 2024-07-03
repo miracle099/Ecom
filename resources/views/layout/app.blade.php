@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <!-- Meta -->
+ <base href="/public">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta content="Anil z" name="author">
@@ -46,13 +47,13 @@
 <body>
 
 <!-- LOADER -->
-<div class="preloader">
+<!-- <div class="preloader">
     <div class="lds-ellipsis">
         <span></span>
         <span></span>
         <span></span>
     </div>
-</div>
+</div> -->
 <!-- END LOADER -->
 
 
@@ -84,6 +85,9 @@
 <script src="assets/js/parallax.js"></script> 
 <!-- countdown js  --> 
 <script src="assets/js/jquery.countdown.min.js"></script> 
+
+<script src="dashboard/assets/js/count.js"></script>
+
 <!-- imagesloaded js --> 
 <script src="assets/js/imagesloaded.pkgd.min.js"></script>
 <!-- isotope min js --> 

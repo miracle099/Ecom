@@ -54,6 +54,7 @@
 
     <!-- JAVASCRIPT -->
     <script src="dashboard/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="dashboard/assets/libs/bootstrap/js/count.js"></script>
     <script src="dashboard/assets/libs/simplebar/simplebar.min.js"></script>
     <script src="dashboard/assets/js/plugins.js"></script>
 

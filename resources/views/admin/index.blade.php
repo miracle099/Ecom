@@ -62,7 +62,7 @@
                                         <div class="vr rounded bg-warning opacity-50" style="width: 4px;"></div>
                                         <div class="flex-grow-1 ms-3">
                                             <p class="text-uppercase fw-medium text-muted fs-14 text-truncate">Customers</p>
-                                            <h4 class="fs-22 fw-semibold mb-3"><span class="counter-value" data-target="79958">0</span> </h4>
+                                            <h4 class="fs-22 fw-semibold mb-3"><span class="counter-value" data-target="{{ $userCount }}">0</span> </h4>
 
                                         </div>
                                         <div class="avatar-sm flex-shrink-0">
@@ -82,7 +82,7 @@
                                         <div class="vr rounded bg-primary opacity-50" style="width: 4px;"></div>
                                         <div class="flex-grow-1 ms-3">
                                             <p class="text-uppercase fw-medium text-muted fs-14 text-truncate">Products</p>
-                                            <h4 class="fs-22 fw-semibold mb-3"><span class="counter-value" data-target="36758">0</span> </h4>
+                                            <h4 class="fs-22 fw-semibold mb-3"><span class="counter-value" data-target="{{ $productCount }}">0</span> </h4>
 
                                         </div>
                                         <div class="avatar-sm flex-shrink-0">
